@@ -24,6 +24,7 @@ Our key insight is that **software agents are themselves software systems**, and
 
 ## 📣 News
 
+- **[Nov 20th, 2025]**: Gemini 3 Pro + Live-SWE-agent scores 77.4% on SWE-bench Verified, outperforming all available models (including Claude 4.5)!!
 - **[Nov 17th, 2025]**: Live-SWE-agent achieves the new state-of-the-art solve rate of 45.8% on SWE-Bench Pro!
 - **[Nov 17th, 2025]**: We've released Live-SWE-agent 1.0.0!
 
