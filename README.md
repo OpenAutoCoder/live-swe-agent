@@ -7,6 +7,7 @@
 <p align="center">
     <a href="https://live-swe-agent.github.io/"><img src="https://img.shields.io/badge/%F0%9F%8F%86-leaderboard-8A2BE2?style=for-the-badge"></a>
     <a href="https://arxiv.org/abs/2511.13646"><img src="https://img.shields.io/badge/📃-Arxiv-a8324c.svg?style=for-the-badge"></a>
+    <a href="https://huggingface.co/livesweagent"><img src="https://img.shields.io/badge/🤗-HuggingFace-eba134.svg?style=for-the-badge"></a>
 </p>
 
 <p align="center">
@@ -54,6 +55,8 @@ See the `config` folder for more details.
 You can download the complete trajectories, patches, and results of Live-SWE-agent in our [v1.0.0 release](https://github.com/OpenAutoCoder/live-swe-agent/releases/tag/v1.0.0):
 - `swebench_verified`: complete runs on SWE-bench Verified
 - `swebench_pro`: complete runs on SWE-Bench Pro
+
+You also obtain them in our 🤗 huggingface [datasets](https://huggingface.co/livesweagent/datasets)
 
 ## 📜 Attribution
 
