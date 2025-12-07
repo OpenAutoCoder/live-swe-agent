@@ -56,7 +56,7 @@ Below shows the comparison graph between Live-SWE-agent and state-of-the-art ope
 
 ## 🚀 Setup
 
-We built Live-SWE-agent on top of the popular [mini-swe-agent]() framework with very minimal modifications.
+We built Live-SWE-agent on top of the popular [mini-swe-agent](https://github.com/SWE-agent/mini-swe-agent) framework with very minimal modifications.
 
 To use Live-SWE-agent, simply install mini-swe-agent first using this [guide]() and use the custom Live-SWE-agent config:
 
