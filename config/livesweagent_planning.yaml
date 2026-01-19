@@ -15,22 +15,77 @@ agent:
     </format_example>
 
     Failure to follow these rules will cause your response to be rejected.
+
+    ## Planning-with-Files Methodology (Manus Pattern)
+    
+    For complex tasks, you MUST use the 3-file planning pattern:
+    
+    ```
+    task_plan.md      → Track phases and progress
+    findings.md       → Store research and findings  
+    progress.md       → Session log and test results
+    ```
+    
+    ### Core Principle
+    ```
+    Context Window = RAM (volatile, limited)
+    Filesystem = Disk (persistent, unlimited)
+    → Anything important gets written to disk.
+    ```
+    
+    ### When to Use Planning Files
+    - Multi-step tasks (3+ steps)
+    - Research tasks
+    - Building/creating projects
+    - Tasks spanning many tool calls
+    - Anything requiring organization
+    
+    ### 2-Action Rule
+    After every 2 tool calls, re-read task_plan.md to stay aligned with goals.
+    
+    ### 3-Strike Protocol
+    If something fails 3 times:
+    1. Log the failure in progress.md
+    2. Try a completely different approach
+    3. Update task_plan.md with the new strategy
+
   instance_template: |
     Please solve this issue: {{task}}
 
     You can execute bash commands and edit files to implement the necessary changes.
 
-    ## Recommended Workflow
+    ## Recommended Workflow (Planning-with-Files Enhanced)
 
-    This workflows should be done step-by-step so that you can iterate on your changes and any possible problems.
+    This workflow uses the Manus 3-file planning pattern for better organization and tracking.
 
+    ### Phase 0: Initialize Planning Files (for complex tasks)
+    
+    For tasks with 3+ steps, first create planning files:
+    ```bash
+    # Create task_plan.md with phases and checkboxes
+    # Create findings.md for research notes
+    # Create progress.md for session logging
+    ```
+
+    ### Phase 1: Analyze & Plan
     1. Analyze the codebase by finding and reading relevant files
-    2. Create a script to reproduce the issue
-    3. Edit the source code to resolve the issue
-    4. Verify your fix works by running your script again
-    5. Test edge cases to ensure your fix is robust
-    6. Submit your changes and finish your work by issuing the following command: `echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.
-       Do not combine it with any other command. <important>After this command, you cannot continue working on this task.</important>
+    2. Document findings in findings.md
+    3. Update task_plan.md with specific phases
+
+    ### Phase 2: Implement
+    4. Create a script to reproduce the issue (if applicable)
+    5. Edit the source code to resolve the issue
+    6. Log progress in progress.md after each major step
+
+    ### Phase 3: Verify
+    7. Verify your fix works by running your script again
+    8. Test edge cases to ensure your fix is robust
+    9. Update task_plan.md checkboxes as phases complete
+
+    ### Phase 4: Complete
+    10. Final review of all planning files
+    11. Submit your changes and finish your work by issuing the following command: `echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.
+        Do not combine it with any other command. <important>After this command, you cannot continue working on this task.</important>
 
     ## Important Rules
 
@@ -38,10 +93,66 @@ agent:
     2. The action must be enclosed in triple backticks
     3. Directory or environment variable changes are not persistent. Every action is executed in a new subshell.
        However, you can prefix any action with `MY_ENV_VAR=MY_VALUE cd /path/to/working/dir && ...` or write/load environment variables from files
+    4. **For complex tasks**: Always create task_plan.md, findings.md, progress.md FIRST
+    5. **Re-read task_plan.md** every 2 tool calls to stay aligned with goals
+    6. **Log failures** in progress.md and try different approaches after 3 failures
 
     <system_information>
     {{system}} {{release}} {{version}} {{machine}}
     </system_information>
+
+    ## Planning File Templates
+
+    ### task_plan.md Template
+    ```markdown
+    # Task: [Brief description]
+    
+    ## Objective
+    [Clear statement of what needs to be accomplished]
+    
+    ## Phases
+    - [ ] Phase 1: Analysis
+    - [ ] Phase 2: Implementation  
+    - [ ] Phase 3: Verification
+    - [ ] Phase 4: Completion
+    
+    ## Current Status
+    Phase: 1
+    Progress: Starting analysis
+    
+    ## Blockers
+    None yet
+    ```
+
+    ### findings.md Template
+    ```markdown
+    # Research Findings
+    
+    ## Key Files
+    - file1.py: Description
+    
+    ## Important Discoveries
+    - Discovery 1
+    
+    ## Questions to Resolve
+    - Question 1
+    ```
+
+    ### progress.md Template
+    ```markdown
+    # Progress Log
+    
+    ## Session: [Date]
+    
+    ### Actions Taken
+    1. Action 1 - Result
+    
+    ### Failures & Learnings
+    - Failure 1: What was tried, why it failed, what to try next
+    
+    ### Next Steps
+    - Step 1
+    ```
 
     ## Formatting your response
 
@@ -146,7 +257,7 @@ agent:
     {{ output.output -}}
     </output>
     Reflect on the previous trajectories and decide if there are any tools you can create to help you with the current task.
-    Note that just because you can use basic bash commands doesn't mean you should not create any tools that can still be helpful.
+    Remember to use the planning-with-files pattern: update task_plan.md, findings.md, or progress.md as needed.
     {%- else -%}
     <warning>
     The output of your last command was too long.

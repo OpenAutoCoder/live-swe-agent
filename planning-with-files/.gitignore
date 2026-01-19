@@ -1,0 +1,24 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Development planning files (meta: I used this skill to build this skill!)
+task_plan.md
+research_notes.md
+notes.md
+
+# But keep example and template files
+!examples/*.md
+!examples/**/*.md
+!**/templates/*.md
+
+# Keep the skill folder clean
+*.log
+*.tmp

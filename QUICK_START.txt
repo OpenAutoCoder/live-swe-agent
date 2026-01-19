@@ -1,0 +1,87 @@
+╔══════════════════════════════════════════════════════════════════╗
+║     LIVE-SWE-AGENT with COPILOT API PROXY - QUICK START         ║
+╔══════════════════════════════════════════════════════════════════╗
+
+✓ SETUP COMPLETE! 
+
+Location: /root/live-swe-agent
+Virtual Env: /root/live-swe-agent/venv
+mini-swe-agent: v1.17.3 installed
+
+════════════════════════════════════════════════════════════════════
+
+REQUIRED: Start Copilot API Proxy First
+────────────────────────────────────────────────────────────────────
+npx copilot-api-plus@latest start --rate-limit 4 --wait
+
+Verify it's running:
+curl http://localhost:4141/v1/models
+
+════════════════════════════════════════════════════════════════════
+
+USAGE EXAMPLES
+────────────────────────────────────────────────────────────────────
+
+1. SINGLE INSTANCE (Quick Test)
+   ────────────────────────────────────────────────────────────────
+   cd /root/live-swe-agent
+   source venv/bin/activate
+   
+   MSWEA_COST_TRACKING='ignore_errors' \
+   OPENAI_API_KEY="sk-dummy" \
+   OPENAI_API_BASE="http://localhost:4141/v1" \
+   mini -c config/livesweagent_planning.yaml \
+        -m openai/claude-opus-4.5 \
+        -t "your task here" \
+        -y
+
+2. PARALLEL INSTANCES (4x) - Using the Script
+   ────────────────────────────────────────────────────────────────
+   cd /root/live-swe-agent
+   ./run_parallel_copilot.sh
+
+3. PARALLEL INSTANCES (4x) - Manual Command
+   ────────────────────────────────────────────────────────────────
+   cd /root/live-swe-agent
+   source venv/bin/activate
+   
+   for i in 1 2 3 4; do 
+       MSWEA_COST_TRACKING='ignore_errors' \
+       OPENAI_API_KEY="sk-dummy" \
+       OPENAI_API_BASE="http://localhost:4141/v1" \
+       mini -c config/livesweagent_planning.yaml \
+            -m openai/claude-opus-4.5 \
+            -t "hello" \
+            -y & 
+   done
+   
+   wait
+
+════════════════════════════════════════════════════════════════════
+
+CONFIGURATION OPTIONS
+────────────────────────────────────────────────────────────────────
+Available configs in config/:
+  • livesweagent.yaml              - Basic config
+  • livesweagent_planning.yaml     - Planning-enhanced (recommended)
+  • livesweagent_swebench.yaml     - SWE-bench Verified
+  • livesweagent_swebench_pro.yaml - SWE-Bench Pro
+
+Available models (via Copilot API):
+  • openai/claude-opus-4.5         - Best performance
+  • openai/claude-sonnet-4.5       - Fast alternative
+  • openai/gpt-5.1-codex-max       - GPT variant
+  • openai/gpt-5.2                 - GPT variant
+  • openai/gpt-4.1                 - GPT variant
+  • openai/gemini-3-pro-preview    - Gemini variant
+
+════════════════════════════════════════════════════════════════════
+
+SCRIPTS AVAILABLE
+────────────────────────────────────────────────────────────────────
+  ./test_setup.sh              - Test single instance
+  ./run_parallel_copilot.sh    - Run 4 parallel instances
+  
+See SETUP_GUIDE.md for detailed documentation
+
+════════════════════════════════════════════════════════════════════

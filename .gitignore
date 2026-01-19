@@ -1,0 +1,36 @@
+# Virtual environment
+venv/
+.venv/
+env/
+.env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Planning files (local use only)
+task_plan.md
+findings.md
+progress.md
+
+# Build artifacts
+*.tar.gz
+*.zip
+dist/
+build/
+
+# Logs
+*.log
